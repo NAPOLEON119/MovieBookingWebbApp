@@ -30,6 +30,12 @@ public class UserManager {
             e.printStackTrace();
         }
     }
+    public List<User> getAllUsers() {
+        return users;
+    }
+    public User getUser(String username) {
+        return users.stream().filter(u -> u.getUsername().equalsIgnoreCase(username)).findFirst().orElse(null);
+    }
 
     public void saveToFile(String filePath) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {

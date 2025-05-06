@@ -12,7 +12,7 @@ import java.io.IOException;
 @WebServlet("/registerServlet")
 public class UserRegistrationServlet extends HttpServlet {
     private UserManager userManager;
-    private final String FILE_PATH = "D:/SLIIT/OOP_FinalProject/MovieBookingWebbApp/users.txt";
+        private final String FILE_PATH = "D:/SLIIT/Movie_BookingWeb/MovieBookingWebbApp/users.txt";
 
     @Override
     public void init() {
