@@ -12,10 +12,10 @@ import java.io.IOException;
 @WebServlet("/registerServlet")
 public class UserRegistrationServlet extends HttpServlet {
     private UserManager userManager;
-    private final String FILE_PATH = "D:/SLIIT/OOP_FinalProject/MovieBookingWebbApp/users.txt"; // ✅ Adjust if needed
+    private final String FILE_PATH = "D:/SLIIT/OOP_FinalProject/MovieBookingWebbApp/users.txt";
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         userManager = new UserManager();
         userManager.loadFromFile(FILE_PATH);
     }
@@ -28,26 +28,21 @@ public class UserRegistrationServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // ✅ Validate required fields
         if (username == null || email == null || password == null ||
                 username.trim().isEmpty() || email.trim().isEmpty() || password.trim().isEmpty()) {
-            // Redirect with error message
-            response.sendRedirect("register.jsp?error=All+fields+are+required");
+            response.sendRedirect("register.jsp?error=Missing fields");
             return;
         }
 
-        // ✅ Check for duplicate username
         if (userManager.userExists(username)) {
-            response.sendRedirect("register.jsp?error=Username+already+exists");
+            response.sendRedirect("register.jsp?error=Username already exists");
             return;
         }
 
-        // ✅ Add and save user
         User newUser = new User(username, email, password);
         userManager.addUser(newUser);
         userManager.saveToFile(FILE_PATH);
 
-        // ✅ Redirect on success
-        response.sendRedirect("index.html");
+        response.sendRedirect("index.html"); // Go to homepage
     }
 }

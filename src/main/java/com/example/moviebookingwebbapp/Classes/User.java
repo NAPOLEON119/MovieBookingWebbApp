@@ -15,14 +15,6 @@ public class User {
         return username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     public String toFileString() {
         return username + "," + email + "," + password;
     }
@@ -35,4 +27,3 @@ public class User {
         return null;
     }
 }
-

@@ -12,12 +12,7 @@ public class UserManager {
     }
 
     public boolean userExists(String username) {
-        for (User u : users) {
-            if (u.getUsername().equalsIgnoreCase(username)) {
-                return true;
-            }
-        }
-        return false;
+        return users.stream().anyMatch(u -> u.getUsername().equalsIgnoreCase(username));
     }
 
     public void loadFromFile(String filePath) {
